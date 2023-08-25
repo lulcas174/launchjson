@@ -2,22 +2,22 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug index.ts",
+      "name": "Debug with nodemon",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/app/index.ts",
-      "cwd": "${workspaceFolder}/app",
-      "preLaunchTask": "CleanAndBuild"
-    }
-  ],
-  "tasks": [
-    {
-      "label": "CleanAndBuild",
-      "type": "shell",
-      "command": "rm -rf dist && npm run build",
-      "group": {
-        "kind": "build",
-        "isDefault": true
+      "runtimeExecutable": "nodemon",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "args": ["${workspaceFolder}/app/index.ts"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "restart": true,
+      "protocol": "inspector",
+      "outputCapture": "std",
+      "sourceMaps": true,
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
       }
     }
   ]
